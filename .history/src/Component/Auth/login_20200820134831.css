@@ -1,0 +1,27 @@
+.login{
+    background-color: blanchedalmond;
+    height: 400px;
+    width: 400px;
+    text-align: center;
+    box-shadow: black;
+    border-radius: 10px;
+}
+.login_container{
+    margin-top: 100px;
+}
+.login_container>img{
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+}
+.login_container>button{
+    margin-top: 50px;
+    background-color: limegreen;
+    color: white;
+
+}
+button:hover{
+    color:black;
+    background-color: white;
+    border: 1px solid black;
+}

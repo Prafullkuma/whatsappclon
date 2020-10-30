@@ -1,0 +1,10 @@
+.App{
+  background-color: burlywood;
+  display: grid;
+  place-items: center;
+}
+.app__header{
+  height: 90vh;
+  width: 80vh;
+  box-shadow: rgba(1,2, 23, 1);
+}

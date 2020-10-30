@@ -1,0 +1,58 @@
+import React, { useState, useEffect } from 'react'
+import { Avatar, IconButton } from '@material-ui/core';
+import DonutLargeIcon from '@material-ui/icons/DonutLarge';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import SearchIcon from '@material-ui/icons/Search';
+import './Sidebar.css'
+import SidebarChat from './Chat/SidebarChat';
+import db from '../firebase';
+import { useStateValue } from './Redux/StateProvider';
+function Slidebar() {
+    const [rooms, setRoom] = useState([])
+    const [{ user }, dispatch] = useStateValue()
+    useEffect(() => {
+        db.collection('rooms').onSnapshot((snapshot) => setRoom(
+            snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data()
+            }))
+        ))
+
+    }, [])
+
+    return (
+        <div className="sidebar">
+            <div className="sidebar_header">
+                <Avatar src={user?.photoURL} />
+                <div className="sidebar_headerRight">
+                    <IconButton>
+                        <DonutLargeIcon />
+                    </IconButton>
+                    <IconButton>
+                        <ChatBubbleIcon />
+                    </IconButton>
+                    <IconButton>
+                        <MoreVertIcon />
+                    </IconButton>
+                </div>
+            </div>
+            <div className="sidebar_search">
+                <div className="search_container">
+                    <SearchIcon />
+                    <input type="text"
+                        placeholder="Search Here" />
+                </div>
+            </div>
+            <div className="sidebar_chat">
+                <SidebarChat addNewChat />
+                {rooms.map((room) => (
+                    <SidebarChat key={room.id} id={room.id}
+                        name={room.data.name} />
+                ))}
+            </div>
+        </div >
+    )
+}
+
+export default Slidebar

@@ -1,0 +1,9 @@
+.App{
+  background-color: burlywood;
+ 
+}
+.app__body{
+  height: 90vh;
+  width: 80vh;
+  box-shadow:red;
+}
